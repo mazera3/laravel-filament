@@ -79,3 +79,4 @@ sail artisan make:filament-resource Role --generate # app/Filament/Resources/Rol
 sail artisan make:seeder UserSeeder
 sail artisan make:seeder RoleSeeder
 sail artisan migrate:fresh --seed
+```
