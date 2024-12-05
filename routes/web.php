@@ -3,7 +3,8 @@
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
-    $permissionGenerate = new \App\Services\PermissionGenerateService();
-    $permissionGenerate->handle();
-    return view('welcome');
+
+    // return view('welcome');
+    // return redirect()->route('login')
+    return redirect('admin/login');
 });

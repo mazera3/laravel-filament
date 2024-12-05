@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\UserResource\Pages;
 use App\Models\User;
+use App\Services\Traits\CanPermissionTrait;
 use Filament\Forms\Components\DateTimePicker;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
@@ -16,19 +17,21 @@ use Filament\Tables\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
+use Filament\Tables;
+use Illuminate\Support\Facades\Hash;
+
 class UserResource extends Resource
 {
+    use CanPermissionTrait;
+
     protected static ?string $model             = User::class;
     protected static ?string $navigationIcon    = 'heroicon-o-rectangle-stack';
-    # deixa User no menu Configurações
     protected static ?string $navigationGroup   = 'Configurações';
-    # slug é o caminho da url
     protected static ?string $slug              = 'users';
-    # Label troca o nome na navegação
     protected static ?string $label              = 'Usuário';
     protected static ?string $pluralLabel        = 'Usuários';
-    # troca o nome no menu
     protected static ?string $navigationLabel   = 'Usuários';
+
 
     public static function form(Form $form): Form
     {
@@ -41,17 +44,19 @@ class UserResource extends Resource
                     ->email()
                     ->required()
                     ->maxLength(255),
-                DateTimePicker::make('email_verified_at'),
+                // DateTimePicker::make('email_verified_at'),
                 TextInput::make('password')
                     ->password()
-                    ->required()
+                    ->dehydrateStateUsing(fn(string $state): string => Hash::make($state))
+                    ->dehydrated(fn(?string $state): bool => filled($state))
+                    ->required(fn(string $operation): bool => $operation === 'create')
                     ->maxLength(255),
                 # Relacionamento
                 Select::make('roles')
-                ->relationship('roles','name') # Tabela "roles" nome: "name"
-                ->multiple() # multiplos relacionamentos
-                ->preload() # carrega todos
-                ->optionsLimit(3), # limita a 3
+                    ->relationship('roles', 'name') # Tabela "roles" nome: "name"
+                    ->multiple() # multiplos relacionamentos
+                    ->preload() # carrega todos
+                    ->optionsLimit(3), # limita a 3
             ]);
     }
 

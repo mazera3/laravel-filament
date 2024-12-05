@@ -22,11 +22,17 @@ class PermissionGenerateService
         // dd($routesPermissions);
 
         foreach ($routesPermissions as $permission) {
+            $default = false;
+            if (in_array($permission, $this->defaultsPermissions())) {
+                $default = true;
+            }
+
             Permission::updateOrCreate([
                 'name' => $permission,
             ], [
                 "description" => $this->extractDescription($permission),
                 "group" => $this->extractGroup($permission),
+                "default" => $default,
             ]);
         }
     }
@@ -84,5 +90,12 @@ class PermissionGenerateService
             $entity = "Permissões";
         }
         return ucfirst($entity);
+    }
+
+    protected function defaultsPermissions(): array
+    {
+        return [
+            "filament.admin.pages.dashboard",
+        ];
     }
 }

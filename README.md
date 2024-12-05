@@ -3,8 +3,8 @@ Lista: https://www.youtube.com/watch?v=N6lvrINJljA&list=PLzKPnb4PnS-Kfet03vds8M3
 1. Laravel com Filament https://youtu.be/g88ByU0nMZc?si=bV0bJNczhpOTAf6C
 2. Laravel com Filament (Relacionamentos) https://youtu.be/N6lvrINJljA?si=qwgXQhn9u26glRPs
 3. Laravel com Filament (Seeders, Services, Permissions, Routes) https://youtu.be/M0VZr99nM9c?si=MN_hecbrskbC_Q8q
-4. Laravel com Filament (Traits, ACL, Permissões) 
-5. Laravel com Filament (ACL, Notification Real Time) 
+4. Laravel com Filament (Traits, ACL, Permissões) https://youtu.be/g0KNpGM6XG0?si=P33uaDvb-NiNiLHY
+5. Laravel com Filament (ACL, Notification Real Time) https://youtu.be/c9OMWHGZEuw?si=upO73LTy9TxRdNE4
 
 # Instale o composer no linux
 * /bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.3)"
@@ -83,8 +83,16 @@ sail artisan make:seeder UserSeeder
 sail artisan make:seeder RoleSeeder
 sail artisan migrate:fresh --seed
 ```
-# Pemissions
+# Seeders, Services, Permissions, Routes - Vídeo 3
 ```sh
 sail artisan make:migration create_permissions_table --create=permissions # cria a migration com a tabela
 sail artisan make:seeder PermissionSeeder
 # criar a classe PermissionGenerateService.php
+```
+# Traits, ACL, Permissões - Vídeo 4
+```sh
+# criar arquivo chamado run_clear_dev.sh
+bash run_clear_dev.sh # rodar
+# criar o diretorio Services/Traits
+# criar o rquivo CanPermissionTrait.php
+
