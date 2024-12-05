@@ -1,7 +1,10 @@
-# Vídeos
+# Vídeos - Código da Vida
 Lista: https://www.youtube.com/watch?v=N6lvrINJljA&list=PLzKPnb4PnS-Kfet03vds8M3zko1TcCpKs&index=2
-1. https://youtu.be/g88ByU0nMZc?si=bV0bJNczhpOTAf6C
-2. https://youtu.be/N6lvrINJljA?si=qwgXQhn9u26glRPs
+1. Laravel com Filament https://youtu.be/g88ByU0nMZc?si=bV0bJNczhpOTAf6C
+2. Laravel com Filament (Relacionamentos) https://youtu.be/N6lvrINJljA?si=qwgXQhn9u26glRPs
+3. Laravel com Filament (Seeders, Services, Permissions, Routes) https://youtu.be/M0VZr99nM9c?si=MN_hecbrskbC_Q8q
+4. Laravel com Filament (Traits, ACL, Permissões) 
+5. Laravel com Filament (ACL, Notification Real Time) 
 
 # Instale o composer no linux
 * /bin/bash -c "$(curl -fsSL https://php.new/install/linux/8.3)"
@@ -80,3 +83,8 @@ sail artisan make:seeder UserSeeder
 sail artisan make:seeder RoleSeeder
 sail artisan migrate:fresh --seed
 ```
+# Pemissions
+```sh
+sail artisan make:migration create_permissions_table --create=permissions # cria a migration com a tabela
+sail artisan make:seeder PermissionSeeder
+# criar a classe PermissionGenerateService.php
