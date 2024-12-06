@@ -1,3 +1,29 @@
+# Como Rodar este projeto
+## Requisitos
+1. PHP: ^8.0
+2. Composer: latest
+3. Clone deste projeto: git clone https://github.com/mazera3/laravel-filament.git
+
+## Execução
+```sh
+# executar no terminal
+2. cp .env.example .env
+3. php artisan key:generate
+# Instalar o composer
+composer install # ou composer update
+# executar
+vendor/bin/sail artisan up -d
+# *****************************************************************
+```
+## Git
+```sh
+git init
+# Se já tiver um repositório
+git remote -v
+git add .
+git commit -m "meu commit"
+git push origin
+```
 # Vídeos - Código da Vida
 Lista: https://www.youtube.com/watch?v=N6lvrINJljA&list=PLzKPnb4PnS-Kfet03vds8M3zko1TcCpKs&index=2
 1. Laravel com Filament https://youtu.be/g88ByU0nMZc?si=bV0bJNczhpOTAf6C
