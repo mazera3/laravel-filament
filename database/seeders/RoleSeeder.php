@@ -39,7 +39,7 @@ class RoleSeeder extends Seeder
                     'system' => $role["system"],
                 ]
             );
-            $roleCreate->permissions()->sync($role['permissions']);
+            $roleCreate->permissions()->syncWithoutDetaching($role['permissions']);
         }
     }
 }

@@ -94,5 +94,23 @@ sail artisan make:seeder PermissionSeeder
 # criar arquivo chamado run_clear_dev.sh
 bash run_clear_dev.sh # rodar
 # criar o diretorio Services/Traits
-# criar o rquivo CanPermissionTrait.php
+# criar o arquivo CanPermissionTrait.php
 
+# Cria app/Filament/Resources/RoleResource/RelationManagers/PermissionsRelationManager.php
+# RoleResource: é o nome da classe de recursos para o modelo proprietário (pai).
+# permissions: É o nome do relacionamento que você deseja gerenciar.
+# name: é o nome do atributo que será usado para identificar permissions
+
+sail artisan make:filament-relation-manager RoleResource permissions name
+# Registrar o novo gerenciador de relacionamento no método getRelations() do recurso RoleResource.php
+
+```
+# ACL, Notification Real Time
+```sh
+# Cria a tabela de migração
+# adicionar a tabela de notificação ao banco de dados
+sail artisan make:notifications-table
+sail artisan migrate
+sail artisan make:observer UserObserver --model=User # cria app/Observers/UserObserver.php
+sail artisan queue:work # gestor de fila
+```
